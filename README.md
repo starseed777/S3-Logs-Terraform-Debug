@@ -8,9 +8,14 @@ The issue was that terraform could not write our application load balancer logs 
 
 - LINK: https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/enable-access-logs.html >> this is the documentation im referring to 
 
-- Ok so the bucket is now able to receive logs - exit criteria met refer to screenshots
+- Ok so the bucket is now able to receive logs - but we need to make this work with a PRIVATE s3 bucket not public 
 
-- Made some slight modifications to the arn code line - to make it cleaner I took out the account # because upon going into the s3 bucket it turns out the account #
-ends up being made as a folder so to keep the buckets file directory I just kept the bucket name / AWSLogs / so the file structure would be easier to navigate 
+- Made some slight modifications to the s3.tf file >> parsed through the web and found this "aws_s3_bucket_public_access_block" on terraform documentation, perhaps we can use this to override the s3.tf bucket acl - will be adding this into code to observe behavior. LINK FOR DOCUMENTATION: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_public_access_block 
+
+- Going to terraform destroy and test this on fresh installation now
+
+- It worked!
+
+- EXIT CRITERIA MET >> REFER TO SCREENSHOTS :)
 
 
